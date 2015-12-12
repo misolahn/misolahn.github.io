@@ -90,10 +90,28 @@
                     
                     <h2 class="section-heading">Loading data from Twitter</h2>
 
-                    <pre><code class="js">
-                    function hello() {
-                      console.log('hello world!');
-                    }
+                    <pre><code class="R">
+                    library(devtools)
+                    library(rjson)
+                    library(bit64)
+                    library(httr)
+                    library(twitteR)
+                    library(base64enc)
+                    library(ggmap)
+                    library(ggplot2)
+
+                    consumer_key <- "your_code"
+                    consumer_secret <- "your_code"
+                    access_token <- "your_code"
+                    access_secret <- "your_code"
+
+                    download.file(url="http://curl.haxx.se/ca/cacert.pem", destfile="cacert.pem") #for Windows
+                    
+                    setup_twitter_oauth(consumer_key, consumer_secret, access_token, access_secret)
+                    
+                    # harvest some tweets
+                    some_tweets = searchTwitter("Guerlain Shalimar", n=1500,since="2015-12-01",until="2015-12-12")
+                    tweet_txt = sapply(some_tweets, function(x) x$getText())
                     </code></pre>
                     
                     <!--
